@@ -150,7 +150,7 @@ export function getHeaders() {
   };
 
   const authHeader = "Authorization";
-  const apiKey = "sk-proj-sY9whWNTEJSHNZRSsDbXT3BlbkFJe5MsZ9VskK59lv4h9wTZ";
+  const apiKey = process.env.OPENAI_API_KEY as string;
   const clientConfig = getClientConfig();
   const makeBearer = (s: string) => `${"Bearer "}${s.trim()}`;
   const validString = (x: string) => x && x.length > 0;
