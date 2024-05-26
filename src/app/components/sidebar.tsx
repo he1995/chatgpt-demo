@@ -1,7 +1,8 @@
 import styles from "./home.module.scss";
 
 import ChatGptIcon from "../icons/chatgpt.svg";
-import MaskIcon from "../icons/mask.svg";
+
+import Locale from "../locales";
 
 
 import {
@@ -14,12 +15,15 @@ import {
 } from "../constant";
 
 import dynamic from "next/dynamic";
+import { useNavigate } from "react-router-dom";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
 });
 
 export function SideBar() {
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -40,9 +44,9 @@ export function SideBar() {
       <button
         className={styles["new-chat-button"]}
         onClick={() => {
-
+          navigate(Path.NewChat)
         }}
-      >新建聊天</button>
+      >{Locale.Chat.NewChat}</button>
 
       <div
         className={styles["sidebar-body"]}

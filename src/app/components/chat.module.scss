@@ -410,7 +410,7 @@
 .chat-message-item {
   box-sizing: border-box;
   max-width: 100%;
-  margin-top: 10px;
+  margin: 10px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.05);
   padding: 10px;
@@ -605,11 +605,23 @@
   min-height: 68px;
 }
 
+.chat-input:focus {}
+
 .chat-input-send {
-  background-color: rgb(29, 147, 171);
+  background-color: var(--primary);
   color: white;
 
   position: absolute;
   right: 30px;
   bottom: 32px;
+}
+
+@media only screen and (max-width: 600px) {
+  .chat-input {
+    font-size: 16px;
+  }
+
+  .chat-input-send {
+    bottom: 30px;
+  }
 }

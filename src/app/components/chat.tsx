@@ -235,6 +235,7 @@ export default function Chat() {
             </div>
             <div
                 className={styles["chat-body"]}
+                ref={scrollRef}
             >
                 {messages.map((message, i) => {
                     const isUser = message.role === "user";
@@ -266,8 +267,7 @@ export default function Chat() {
                                             </>
                                         )}
                                     </div>
-                                </div>
-                                {showTyping && (
+                                    {showTyping && (
                                     <div className={styles["chat-message-status"]}>
                                         {Locale.Chat.Typing}
                                     </div>
@@ -318,6 +318,7 @@ export default function Chat() {
                                     {isContext
                                         ? Locale.Chat.IsContext
                                         : message.date.toLocaleString()}
+                                </div>
                                 </div>
                             </div>
                         </Fragment>

@@ -48,10 +48,6 @@ export function NewChat() {
 
   return (
     <div className={styles["new-chat"]}>
-      <div className={styles["mask-header"]}>
-        <LeftIcon />
-        <div>返回</div>
-      </div>
       <div className={styles["mask-cards"]}>
         <div className={styles["mask-card"]}>
           <EmojiAvatar avatar="1f606" size={24} />
