@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { nanoid } from "nanoid";
-import { DEFAULT_TOPIC } from "./chat";
+import { ChatSession, DEFAULT_TOPIC } from "./chat";
 import { ModelConfig, ModelType } from "./config";
 import { RequestMessage } from "../client/api";
 import { CN_MASKS } from "./cn";
@@ -50,15 +50,15 @@ export const useMaskStore = create<MaskState>()(
   persist((set, get) => ({
     masks: [],
     uploadMasks: async () => {
-      // fetch("http://localhost:8080/mask/add_all", { method: "post", headers: {"Content-Type": "application/json"}, body: JSON.stringify(CN_MASKS) }).then((res) => {
-      //   console.log(res.text());
+      // fetch((process.env.NEXT_PUBLIC_API_URL + "/mask/add_all"), { method: "post", headers: {"Content-Type": "application/json"}, body: JSON.stringify(CN_MASKS) }).then((res) => {
+      //   console.log("masks=================================================" + res.text());
       //   set({ masks: get().masks })
       // }).catch(e => {
       //   console.error(e);
       // })
     },
     fetchMasks: async () => {
-      fetch("http://localhost:8080/mask/all").then((res) => {
+      fetch(process.env.NEXT_PUBLIC_API_URL + "/mask/all").then((res) => {
         return res.json();
       }).then((serverMasks: Mask[]) => {
         serverMasks.forEach((mask) => {

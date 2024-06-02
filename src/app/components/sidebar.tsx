@@ -44,7 +44,7 @@ export function SideBar() {
       <button
         className={styles["new-chat-button"]}
         onClick={() => {
-          navigate(Path.NewChat)
+          navigate(Path.Masks)
         }}
       >{Locale.Chat.NewChat}</button>
 

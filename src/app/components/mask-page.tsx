@@ -1,5 +1,5 @@
 
-import styles from "./new-chat.module.scss";
+import styles from "./mask-page.module.scss";
 
 import LeftIcon from "../icons/left.svg";
 import { Mask, useMaskStore } from "../store/mask";
@@ -27,7 +27,7 @@ export function MaskAvatar(props: { avatar: string }) {
   );
 }
 
-export function NewChat() {
+export function MaskPage() {
 
   const chatStore = useChatStore();
   const masks = useMaskStore((state) => state.masks);

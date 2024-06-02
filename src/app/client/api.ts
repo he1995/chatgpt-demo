@@ -142,6 +142,10 @@ export class ClientApi {
   }
 }
 
+export function getServerURL() {
+  return process.env.NEXT_PUBLIC_API_URL;
+}
+
 export function getHeaders() {
   const accessStore = useAccessStore.getState();
   const headers: Record<string, string> = {
@@ -150,7 +154,7 @@ export function getHeaders() {
   };
 
   const authHeader = "Authorization";
-  const apiKey = process.env.OPENAI_API_KEY as string;
+  const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY as string;
   const clientConfig = getClientConfig();
   const makeBearer = (s: string) => `${"Bearer "}${s.trim()}`;
   const validString = (x: string) => x && x.length > 0;

@@ -58,7 +58,7 @@ export class ChatGPTApi implements LLMApi {
 
   path(path: string): string {
     
-    let  baseUrl = "https://api.openai.com";
+    let  baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
     return [baseUrl, path].join("/");
   }

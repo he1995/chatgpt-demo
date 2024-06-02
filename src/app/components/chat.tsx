@@ -4,7 +4,7 @@ import Locale from "../locales";
 import { Fragment, RefObject, useEffect, useMemo, useRef, useState } from "react";
 import { CHAT_PAGE_SIZE, LAST_INPUT_KEY } from "../constant";
 import { Avatar } from "./emoji";
-import { MaskAvatar } from "./new-chat";
+import { MaskAvatar } from "./mask-page";
 import { Markdown } from "./markdown";
 import { autoGrowTextArea, getMessageImages, getMessageTextContent } from "../utils";
 import { useDebouncedCallback } from "use-debounce";
@@ -95,7 +95,6 @@ export default function Chat() {
 
     const chatStore = useChatStore();
     const session = chatStore.currentSession();
-    console.log(session);
     const config = useAppConfig();
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [userInput, setUserInput] = useState("");
@@ -194,10 +193,9 @@ export default function Chat() {
         const endRenderIndex = Math.min(
             msgRenderIndex + 3 * CHAT_PAGE_SIZE,
             renderMessages.length,
-        );
+        ); 
         return renderMessages.slice(msgRenderIndex, endRenderIndex);
     }, [msgRenderIndex, renderMessages]);
-    console.log(messages);
 
     // auto grow input
     const [inputRows, setInputRows] = useState(2);
