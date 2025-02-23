@@ -5,6 +5,7 @@ import styles from "./home.module.scss";
 import { Path } from "../constant";
 
 import Locale from "../locales";
+import { useEffect } from "react";
 
 export function ChatItem(props: {
   onClick?: () => void;
@@ -66,12 +67,11 @@ export function ChatList() {
   );
   const chatStore = useChatStore();
   const navigate = useNavigate();
-  // const sessions = [
-  //   {id: "1", title: "小红书写手", count: 3, time: "2024/5/1 15:35:43"},
-  //   {id: "2", title: "心灵导师", count: 0, time: "2024/5/2 18:00:00"},
-  //   {id: "3", title: "以文搜图", count: 5, time: "2024/5/2 15:35:43"},
-  //   {id: "4", title: "简历写手", count: 10, time: "2024/5/3 10:46:04"}
-  // ]
+
+  useEffect(() => {
+    chatStore.loadSessions();
+  },[])
+
   return (
     <div
             className={styles["chat-list"]}
