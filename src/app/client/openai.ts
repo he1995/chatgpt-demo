@@ -7,7 +7,7 @@ import {
   REQUEST_TIMEOUT_MS,
   ServiceProvider,
 } from "@/app/constant";
-import { useAccessStore, useAppConfig, useChatStore } from "../store";
+import { useAppConfig, useChatStore } from "../store";
 
 import {
   ChatOptions,

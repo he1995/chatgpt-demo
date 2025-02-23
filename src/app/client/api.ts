@@ -5,7 +5,7 @@ import {
   ModelProvider,
   ServiceProvider,
 } from "../constant";
-import { ChatMessage, ModelType, useAccessStore, useChatStore } from "../store";
+import { ChatMessage, ModelType, useChatStore } from "../store";
 import { ChatGPTApi } from "./openai";
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
@@ -147,7 +147,6 @@ export function getServerURL() {
 }
 
 export function getHeaders() {
-  const accessStore = useAccessStore.getState();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -159,17 +158,7 @@ export function getHeaders() {
   const makeBearer = (s: string) => `${"Bearer "}${s.trim()}`;
   const validString = (x: string) => x && x.length > 0;
 
-  // use user's api key first
-    if (validString(apiKey)) {
-      headers[authHeader] = makeBearer(apiKey);
-    } else if (
-      accessStore.enabledAccessControl() &&
-      validString(accessStore.accessCode)
-    ) {
-      headers[authHeader] = makeBearer(
-        ACCESS_CODE_PREFIX + accessStore.accessCode,
-      );
-    }
+  headers[authHeader] = makeBearer(apiKey);
 
   return headers;
 }

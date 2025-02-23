@@ -144,7 +144,7 @@ function createEmptySession(): ChatSession {
 }
 
 export interface ChatState {
-    loadSessions(): () => void;
+    loadSessions(): void;
     deleteSession(i: number): unknown;
     onUserInput(userInput: string): Promise<void>;
     onNewMessage(botMessage: ChatMessage): unknown;
