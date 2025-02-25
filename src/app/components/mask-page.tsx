@@ -1,7 +1,6 @@
 
 import styles from "./mask-page.module.scss";
 
-import LeftIcon from "../icons/left.svg";
 import { Mask, useMaskStore } from "../store/mask";
 import { Avatar, EmojiAvatar } from "./emoji";
 import { useEffect } from "react";

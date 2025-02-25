@@ -6,16 +6,12 @@ import Locale from "../locales";
 
 
 import {
-  DEFAULT_SIDEBAR_WIDTH,
-  MAX_SIDEBAR_WIDTH,
-  MIN_SIDEBAR_WIDTH,
-  NARROW_SIDEBAR_WIDTH,
   Path,
-  REPO_URL,
 } from "../constant";
 
 import dynamic from "next/dynamic";
 import { useNavigate } from "react-router-dom";
+import { useTokenStore } from "../store/token";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -24,6 +20,12 @@ const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
 export function SideBar() {
 
   const navigate = useNavigate();
+  const recordToken = useTokenStore((state) => state.recordToken);
+
+  function logout() {
+    recordToken("");
+    navigate(Path.Home);
+  }
 
   return (
     <div
@@ -52,6 +54,15 @@ export function SideBar() {
         className={styles["sidebar-body"]}
       >
         <ChatList />
+      </div>
+
+      <div className={styles["sidebar-tail"]}>
+        <button
+          className={styles["sidebar-logout-button"]}
+          onClick={logout}
+        >
+          退出登录
+        </button>
       </div>
     </div>
   );
