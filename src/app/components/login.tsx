@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
 import { getServerURL } from '../client/api';
-import { useTokenStore } from '../store/token';
+import { useUserInfoStore } from '../store/token';
 import { useNavigate } from 'react-router-dom';
 import { Path } from '../constant';
 
@@ -9,7 +9,7 @@ const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const recordToken = useTokenStore((state) => state.recordToken);
+    const recordUserInfo = useUserInfoStore((state) => state.recordUserInfo);
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -27,8 +27,12 @@ const Login: React.FC = () => {
             }
 
             const data = await response.json();
-            console.log('登录成功:', data.data.tokenValue);
-            recordToken(data.data.tokenValue);
+            recordUserInfo({
+                userId: data.data.user.id,
+                username: data.data.user.username,
+                token: data.data.tokenInfo.tokenValue,
+                memberShipDeadline: Date.parse(data.data.user.memberShipDeadline)
+            });
             navigate(Path.Home);
         } catch (err) {
             setError(err.message);

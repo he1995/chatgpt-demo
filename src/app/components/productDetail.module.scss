@@ -1,0 +1,74 @@
+.productDetail {
+  padding: 20px;
+  text-align: center;
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .detailCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border: var(--border-in-light);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    margin: 10px;
+    width: 600px;
+    text-align: left;
+
+    .productImage {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .info {
+      h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .realPrice {
+        font-size: 18px;
+        color: var(--primary);
+        margin-bottom: 5px;
+      }
+
+      .originPrice {
+        font-size: 16px;
+        color: gray;
+        text-decoration: line-through;
+        margin-bottom: 10px;
+      }
+
+      .emailInput {
+        width: 100%;
+        min-width: 250px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: var(--border-in-light);
+        border-radius: 5px;
+      }
+
+      .orderButton {
+        padding: 10px 20px;
+        margin-left: 20px;
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: var(--second);
+        }
+      }
+    }
+  }
+} 

@@ -52,7 +52,8 @@
             border-radius: 6px;
             font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s; 
+             
 
             &:hover {
                 background-color: var(--second);

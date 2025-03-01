@@ -1,0 +1,61 @@
+.orderDetail {
+  padding: 40px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #000;
+  }
+
+  .detailCard {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+
+      li {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #333;
+      }
+    }
+
+    .tag {
+      background-color: #e0f7fa;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: #00796b;
+      font-weight: bold;
+    }
+
+    .payButton {
+      padding: 15px 30px;
+      background-color: #00796b;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s, transform 0.3s;
+
+      &:hover {
+        background-color: #004d40;
+        transform: scale(1.05);
+      }
+    }
+  }
+} 

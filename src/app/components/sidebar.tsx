@@ -11,7 +11,7 @@ import {
 
 import dynamic from "next/dynamic";
 import { useNavigate } from "react-router-dom";
-import { useTokenStore } from "../store/token";
+import { useUserInfoStore } from "../store/token";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -20,10 +20,10 @@ const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
 export function SideBar() {
 
   const navigate = useNavigate();
-  const recordToken = useTokenStore((state) => state.recordToken);
+  const clearUserInfo = useUserInfoStore((state) => state.clearUserInfo);
 
   function logout() {
-    recordToken("");
+    clearUserInfo();
     navigate(Path.Home);
   }
 

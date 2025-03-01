@@ -20,6 +20,10 @@ export enum Path {
   Settings = "/settings",
   Masks = "/masks",
   Auth = "/auth",
+  Login = "/login",
+  Product = "/product",
+  ProductDetail = "/productdetail",
+  Order = "/order",
 }
 
 export enum ApiPath {
