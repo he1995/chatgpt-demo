@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
-import { getServerURL } from '../client/api';
-import { useUserInfoStore } from '../store/token';
+import { useUserInfoStore } from '../store/user';
 import { useNavigate } from 'react-router-dom';
 import { Path } from '../constant';
 
@@ -14,7 +13,7 @@ const Login: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch(getServerURL() + '/user/login', {
+            const response = await fetch('http://localhost:8080/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,8 +32,9 @@ const Login: React.FC = () => {
                 token: data.data.tokenInfo.tokenValue,
                 memberShipDeadline: Date.parse(data.data.user.memberShipDeadline)
             });
+            console.log(data);
             navigate(Path.Home);
-        } catch (err) {
+        } catch (err: Error | any) {
             setError(err.message);
         }
     };

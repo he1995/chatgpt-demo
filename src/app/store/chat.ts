@@ -6,11 +6,13 @@ import { persist } from "zustand/middleware";
 import { showToast } from "../components/ui-lib";
 import { DEFAULT_INPUT_TEMPLATE, DEFAULT_MODELS, DEFAULT_SYSTEM_TEMPLATE, GEMINI_SUMMARIZE_MODEL, KnowledgeCutOffDate, ModelProvider, SUMMARIZE_MODEL } from "../constant";
 import { ModelConfig, ModelType, useAppConfig } from "./config";
-import { ClientApi, MultimodalContent, RequestMessage, getServerURL } from "../client/api";
+import { ClientApi, MultimodalContent, RequestMessage } from "../client/api";
 import { estimateTokenLength } from "../utils/token";
 import { getMessageTextContent, trimTopic } from "../utils";
 import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
+import { useUserInfoStore } from "./user";
+import { fetchWithAuth } from "../utils/fetch";
 
 
 export function createMessage(override: Partial<ChatMessage>): ChatMessage {
@@ -76,7 +78,7 @@ function getSummarizeModel(currentModel: string) {
 }
 
 function uploadMessage(session: ChatSession, message: ChatMessage) {
-    return fetch(getServerURL() + "/session/message/add?sessionId=" + session.id,
+    return fetch(getSessionUrl() + "/session/message/add?sessionId=" + session.id,
         {
             method: "post",
             headers: {
@@ -157,6 +159,9 @@ export interface ChatState {
     getMessagesWithMemory: () => ChatMessage[];
 }
 
+function getSessionUrl() {
+    return process.env.NEXT_PUBLIC_API_URL;
+}
 
 export const useChatStore = create<ChatState>()(
     persist((set, get) => ({
@@ -164,10 +169,10 @@ export const useChatStore = create<ChatState>()(
         currentSessionIndex: 0,
 
         loadSessions() {
-            fetch(getServerURL() + "/session/all")
-                .then((res) => {
-                    return res.json();
-                }).then((sessions: []) => {
+            // 使用新的 fetchWithAuth
+            fetchWithAuth(getSessionUrl() + "/session/all")
+                .then((res) => res.json())
+                .then((sessions: []) => {
                     if (sessions.length > 0) {
                         set((state) => ({
                             sessions: sessions
@@ -193,7 +198,7 @@ export const useChatStore = create<ChatState>()(
                 session.topic = mask.name;
             }
 
-            fetch(getServerURL() + "/session/add",
+            fetch(getSessionUrl() + "/session/add",
                 {
                     method: "post",
                     headers: { "Content-Type": "application/json" },
@@ -216,7 +221,7 @@ export const useChatStore = create<ChatState>()(
             if (!deletedSession) return;
 
             fetch(
-                getServerURL() + "/session/delete?sessionId=" + deletedSession.id,
+                getSessionUrl() + "/session/delete?sessionId=" + deletedSession.id,
                 { method: "post" }
             ).then((res) => {
                 const sessions = get().sessions.slice();

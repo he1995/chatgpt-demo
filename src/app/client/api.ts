@@ -142,10 +142,6 @@ export class ClientApi {
   }
 }
 
-export function getServerURL() {
-  return process.env.NEXT_PUBLIC_API_URL;
-}
-
 export function getHeaders() {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",

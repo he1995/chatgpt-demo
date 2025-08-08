@@ -6,6 +6,8 @@ import { ModelConfig, ModelType } from "./config";
 import { RequestMessage } from "../client/api";
 import { CN_MASKS } from "./cn";
 import { Lang } from "../locales";
+import { useUserInfoStore } from "./user";
+import { fetchWithAuth } from "../utils/fetch";
 
 export type ChatMessage = RequestMessage & {
   date: string;
@@ -58,7 +60,8 @@ export const useMaskStore = create<MaskState>()(
       // })
     },
     fetchMasks: async () => {
-      fetch(process.env.NEXT_PUBLIC_API_URL + "/mask/all").then((res) => {
+      fetchWithAuth(process.env.NEXT_PUBLIC_API_URL + "/mask/all")
+       .then((res) => {
         return res.json();
       }).then((serverMasks: Mask[]) => {
         serverMasks.forEach((mask) => {

@@ -11,7 +11,7 @@ import {
 
 import dynamic from "next/dynamic";
 import { useNavigate } from "react-router-dom";
-import { useUserInfoStore } from "../store/token";
+import { useUserInfoStore } from "../store/user";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,

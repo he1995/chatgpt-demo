@@ -1,6 +1,7 @@
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { getServerURL } from "../client/api";
+import { fetchWithAuth } from "../utils/fetch";
 
 export interface Product {
     id: number;
@@ -16,6 +17,10 @@ export interface ProductState {
   allProducts: Product[];
   selectProduct: (product: Product) => void;
   fetchAllProducts: () => void;
+}
+
+function getProductURL() {
+  return process.env.NEXT_PUBLIC_API_URL;
 }
 
 export const useProductStore = create<ProductState>()(
@@ -34,7 +39,7 @@ export const useProductStore = create<ProductState>()(
       set({ currentProduct: product });
     },
     fetchAllProducts: async () => {
-      const response = await fetch(getServerURL() + '/goods/all');
+      const response = await fetchWithAuth(getProductURL() + '/goods/all');
       const data = await response.json();
       set({ allProducts: data.data });
     },

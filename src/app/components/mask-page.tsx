@@ -10,7 +10,7 @@ import { useChatStore } from "../store/chat";
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
 import { SideBar } from "./sidebar";
-import { useUserInfoStore } from "../store/token";
+import { useUserInfoStore } from "../store/user";
 
 function MaskItem(props: { mask: Mask; onClick?: () => void }) {
   return (

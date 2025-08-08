@@ -34,6 +34,6 @@ export const useUserInfoStore = create<UserInfoState>()(
       } });
     }
   }),
-    { name: "userInfo" }
+    { name: "userInf" }
   )
 )

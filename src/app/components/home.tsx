@@ -10,8 +10,8 @@ import Login from "./login";
 import ProductList from "./ProductList";
 import ProductDetail from "./ProductDetail";
 import OrderDetail from "./OrderDetail";
+import { useUserInfoStore } from "../store/user";
 export default function Home() {
-  
 
   return (
     <Router>
