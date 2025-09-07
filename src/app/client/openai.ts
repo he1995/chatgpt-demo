@@ -85,7 +85,7 @@ export class ChatGPTApi implements LLMApi {
     const requestPayload: RequestPayload = {
       messages,
       stream: options.config.stream,
-      model: modelConfig.model,
+      model: "deepseek-chat",
       temperature: modelConfig.temperature,
       presence_penalty: modelConfig.presence_penalty,
       frequency_penalty: modelConfig.frequency_penalty,
